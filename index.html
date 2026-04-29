@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe こもれび｜太宰府の隠れ家カフェ</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+JP:wght@200;300;400;500&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --latte: #F5EDE3;
+  --espresso: #3C2A1E;
+  --caramel: #C08B5C;
+  --caramel-light: #D4A872;
+  --cream: #FAF7F2;
+  --matcha: #7A8B6F;
+  --matcha-light: #A8B89E;
+  --charcoal: #2E2926;
+  --warm-gray: #8C7E74;
+  --white: #FFFFFF;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+}
+
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--espresso);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--espresso); }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 5rem;
+  background: var(--cream);
+  animation: slideRight 1s ease-out;
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.hero-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--caramel);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--espresso);
+  margin-bottom: 0.8rem;
+}
+
+.hero-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.3rem;
+  font-weight: 200;
+  color: var(--warm-gray);
+  letter-spacing: 0.25em;
+  margin-bottom: 2rem;
+}
+
+.hero-desc {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: var(--warm-gray);
+  font-weight: 300;
+  max-width: 400px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--espresso);
+  color: var(--white);
+  padding: 1rem 2.2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  transition: all 0.4s;
+}
+
+.hero-cta:hover {
+  background: var(--caramel);
+  transform: translateY(-2px);
+}
+
+/* ===================================
+   写真エリア - ここに写真を設定します
+   =================================== */
+
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  /* ▼▼▼ 写真①：メインビジュアル ▼▼▼
+     下の background-image の url() の中を写真のパスに変更してください
+     例: background-image: url('images/hero.jpg');
+  */
+  background-image: none;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--latte);
+  animation: fadeIn 1.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 写真がまだ入っていない時のプレースホルダー表示 */
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--warm-gray);
+}
+
+.photo-placeholder-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed var(--caramel-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.photo-placeholder-text {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--caramel-light);
+}
+
+.photo-placeholder-hint {
+  font-size: 0.65rem;
+  color: var(--warm-gray);
+  opacity: 0.6;
+  max-width: 200px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── Menu Section ── */
+.menu-section {
+  padding: 7rem 2rem;
+  background: var(--white);
+}
+
+.menu-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--caramel);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 0.85rem;
+  color: var(--warm-gray);
+  font-weight: 300;
+  margin-bottom: 4rem;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.menu-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--cream);
+  transition: all 0.4s;
+  cursor: default;
+}
+
+.menu-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.08);
+}
+
+/* ▼▼▼ 写真②③④：メニュー写真 ▼▼▼ */
+.menu-card-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background-color: var(--latte);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.menu-card-body {
+  padding: 1.5rem;
+}
+
+.menu-card h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 0.4rem;
+}
+
+.menu-card .price {
+  font-family: 'DM Serif Display', serif;
+  font-size: 0.95rem;
+  color: var(--caramel);
+}
+
+.menu-card p {
+  font-size: 0.8rem;
+  color: var(--warm-gray);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-top: 0.6rem;
+}
+
+/* ── Gallery Section ── */
+.gallery-section {
+  padding: 7rem 2rem;
+  background: var(--cream);
+}
+
+.gallery-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ▼▼▼ 写真⑤⑥⑦⑧：ギャラリー写真 ▼▼▼ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--latte);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ── Access Section ── */
+.access-section {
+  padding: 7rem 2rem;
+  background: var(--espresso);
+  color: var(--latte);
+}
+
+.access-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.access-section .section-label { color: var(--caramel-light); }
+.access-section .section-title { color: var(--latte); }
+
+.access-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.access-row {
+  display: flex;
+  gap: 1.2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.access-row:last-child { border-bottom: none; }
+
+.access-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(192, 139, 92, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.access-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 0.3rem;
+}
+
+.access-value {
+  font-size: 0.9rem;
+  color: var(--latte);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.access-value a {
+  color: var(--caramel-light);
+  text-decoration: none;
+}
+
+.map-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.map-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: contrast(0.95);
+}
+
+/* ── Footer ── */
+footer {
+  background: #241C17;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  color: var(--latte);
+  margin-bottom: 0.5rem;
+}
+
+.footer-sub {
+  font-size: 0.75rem;
+  color: var(--warm-gray);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.5rem;
+}
+
+footer .copy {
+  font-size: 0.65rem;
+  color: rgba(140, 126, 116, 0.4);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 8rem 2rem 3rem; }
+  .hero-right { min-height: 50vh; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .access-inner { grid-template-columns: 1fr; }
+}
+
+/* ── Reveal animation ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Cafe こもれび</a>
+  <ul class="nav-links">
+    <li><a href="#menu">メニュー</a></li>
+    <li><a href="#gallery">ギャラリー</a></li>
+    <li><a href="#access">アクセス</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-label">Hidden Cafe in Dazaifu</div>
+    <h1>Cafe<br>こもれび</h1>
+    <div class="hero-jp">木漏れ日のなかで、ひと休み</div>
+    <p class="hero-desc">
+      太宰府天満宮のほど近く、路地裏にひっそりと佇む小さなカフェ。
+      自家焙煎のコーヒーと手作りスイーツで、ゆったりとしたひとときをお過ごしください。
+    </p>
+    <a href="tel:092-000-0000" class="hero-cta">
+      ☎ 092-000-0000
+    </a>
+  </div>
+
+  <!-- ★ 写真① メインビジュアル ★ -->
+  <div class="hero-right" id="photo-hero">
+    <div class="photo-placeholder">
+      <div class="photo-placeholder-icon">📷</div>
+      <div class="photo-placeholder-text">写真① メインビジュアル</div>
+      <div class="photo-placeholder-hint">images/hero.jpg を追加すると<br>ここに表示されます</div>
+    </div>
+  </div>
+</section>
+
+<!-- Menu -->
+<section id="menu" class="menu-section">
+  <div class="menu-inner">
+    <div class="section-label reveal">Menu</div>
+    <div class="section-title reveal">こだわりの一杯</div>
+    <div class="section-sub reveal">自家焙煎の豆を一杯ずつ丁寧にハンドドリップ</div>
+    <div class="menu-grid">
+
+      <!-- ★ 写真② メニュー1 ★ -->
+      <div class="menu-card reveal">
+        <div class="menu-card-image" id="photo-menu1">
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon" style="width:50px;height:50px;font-size:1.2rem;">☕</div>
+            <div class="photo-placeholder-text">写真②</div>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <h3>こもれびブレンド</h3>
+          <div class="price">¥500</div>
+          <p>やさしい口あたりの中深煎り。当店の看板メニューです。</p>
+        </div>
+      </div>
+
+      <!-- ★ 写真③ メニュー2 ★ -->
+      <div class="menu-card reveal">
+        <div class="menu-card-image" id="photo-menu2">
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon" style="width:50px;height:50px;font-size:1.2rem;">🍰</div>
+            <div class="photo-placeholder-text">写真③</div>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <h3>季節のケーキセット</h3>
+          <div class="price">¥900</div>
+          <p>旬のフルーツを使った手作りケーキとドリンクのセット。</p>
+        </div>
+      </div>
+
+      <!-- ★ 写真④ メニュー3 ★ -->
+      <div class="menu-card reveal">
+        <div class="menu-card-image" id="photo-menu3">
+          <div class="photo-placeholder">
+            <div class="photo-placeholder-icon" style="width:50px;height:50px;font-size:1.2rem;">🍵</div>
+            <div class="photo-placeholder-text">写真④</div>
+          </div>
+        </div>
+        <div class="menu-card-body">
+          <h3>太宰府抹茶ラテ</h3>
+          <div class="price">¥600</div>
+          <p>八女産の抹茶を使用。ほどよい甘さが人気です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="gallery-section">
+  <div class="gallery-inner">
+    <div class="section-label reveal">Gallery</div>
+    <div class="section-title reveal">お店の風景</div>
+    <div class="gallery-grid">
+
+      <!-- ★ 写真⑤⑥⑦⑧ ギャラリー ★ -->
+      <div class="gallery-item reveal" id="photo-gallery1">
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon" style="width:40px;height:40px;font-size:1rem;">🏠</div>
+          <div class="photo-placeholder-text">写真⑤</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal" id="photo-gallery2">
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon" style="width:40px;height:40px;font-size:1rem;">🪴</div>
+          <div class="photo-placeholder-text">写真⑥</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal" id="photo-gallery3">
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon" style="width:40px;height:40px;font-size:1rem;">☕</div>
+          <div class="photo-placeholder-text">写真⑦</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal" id="photo-gallery4">
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon" style="width:40px;height:40px;font-size:1rem;">🍽️</div>
+          <div class="photo-placeholder-text">写真⑧</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Access -->
+<section id="access" class="access-section">
+  <div class="access-inner">
+    <div class="access-info">
+      <div>
+        <div class="section-label reveal">Access</div>
+        <div class="section-title reveal">お店のご案内</div>
+      </div>
+      <div class="access-row reveal">
+        <div class="access-icon">📍</div>
+        <div>
+          <div class="access-label">住所</div>
+          <div class="access-value">〒818-0117<br>福岡県太宰府市宰府1丁目○−○</div>
+        </div>
+      </div>
+      <div class="access-row reveal">
+        <div class="access-icon">📞</div>
+        <div>
+          <div class="access-label">お電話</div>
+          <div class="access-value"><a href="tel:092-000-0000">092-000-0000</a></div>
+        </div>
+      </div>
+      <div class="access-row reveal">
+        <div class="access-icon">🕐</div>
+        <div>
+          <div class="access-label">営業時間</div>
+          <div class="access-value">10:00 〜 18:00（L.O. 17:30）<br>定休日：毎週水曜日</div>
+        </div>
+      </div>
+      <div class="access-row reveal">
+        <div class="access-icon">🚃</div>
+        <div>
+          <div class="access-label">アクセス</div>
+          <div class="access-value">西鉄 太宰府駅 徒歩5分</div>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrap reveal">
+      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=130.5250%2C33.5170%2C130.5370%2C33.5230&layer=mapnik&marker=33.5200%2C130.5310" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">Cafe こもれび</div>
+  <div class="footer-sub">太宰府の隠れ家カフェ</div>
+  <div class="copy">&copy; 2026 Cafe こもれび</div>
+</footer>
+
+<script>
+// Navbar
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
