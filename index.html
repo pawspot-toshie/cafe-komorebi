@@ -150,18 +150,9 @@ nav.scrolled {
   transform: translateY(-2px);
 }
 
-/* ===================================
-   写真エリア - ここに写真を設定します
-   =================================== */
-
 .hero-right {
   position: relative;
   overflow: hidden;
-  /* ▼▼▼ 写真①：メインビジュアル ▼▼▼
-     下の background-image の url() の中を写真のパスに変更してください
-     例: background-image: url('images/hero.jpg');
-  */
-  background-image: none;
   background-size: cover;
   background-position: center;
   background-color: var(--latte);
@@ -171,44 +162,6 @@ nav.scrolled {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-/* 写真がまだ入っていない時のプレースホルダー表示 */
-.photo-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  color: var(--warm-gray);
-}
-
-.photo-placeholder-icon {
-  width: 80px;
-  height: 80px;
-  border: 2px dashed var(--caramel-light);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-}
-
-.photo-placeholder-text {
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  color: var(--caramel-light);
-}
-
-.photo-placeholder-hint {
-  font-size: 0.65rem;
-  color: var(--warm-gray);
-  opacity: 0.6;
-  max-width: 200px;
-  text-align: center;
-  line-height: 1.6;
 }
 
 /* ── Menu Section ── */
@@ -266,14 +219,12 @@ nav.scrolled {
   box-shadow: 0 16px 50px rgba(0,0,0,0.08);
 }
 
-/* ▼▼▼ 写真②③④：メニュー写真 ▼▼▼ */
 .menu-card-image {
   width: 100%;
   aspect-ratio: 4/3;
   background-color: var(--latte);
   background-size: cover;
   background-position: center;
-  position: relative;
 }
 
 .menu-card-body {
@@ -314,7 +265,6 @@ nav.scrolled {
   text-align: center;
 }
 
-/* ▼▼▼ 写真⑤⑥⑦⑧：ギャラリー写真 ▼▼▼ */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -329,7 +279,6 @@ nav.scrolled {
   background-color: var(--latte);
   background-size: cover;
   background-position: center;
-  position: relative;
   transition: all 0.4s;
   cursor: pointer;
 }
@@ -494,10 +443,7 @@ footer .copy {
       ☎ 092-000-0000
     </a>
   </div>
-
-  <!-- ★ 写真① メインビジュアル ★ -->
-  <div class="hero-right" id="photo-hero" style="background-image: url('images/hero.jpg');">
-  </div>
+  <div class="hero-right" style="background-image: url('images/hero.jpg');"></div>
 </section>
 
 <!-- Menu -->
@@ -507,30 +453,24 @@ footer .copy {
     <div class="section-title reveal">こだわりの一杯</div>
     <div class="section-sub reveal">自家焙煎の豆を一杯ずつ丁寧にハンドドリップ</div>
     <div class="menu-grid">
-
-      <!-- ★ 写真② メニュー1 ★ -->
       <div class="menu-card reveal">
-        <div class="menu-card-image" id="photo-menu1" style="background-image: url(\'images/menu1.jpg\');">
+        <div class="menu-card-image" style="background-image: url('images/menu1.jpg');"></div>
         <div class="menu-card-body">
           <h3>こもれびブレンド</h3>
           <div class="price">¥500</div>
           <p>やさしい口あたりの中深煎り。当店の看板メニューです。</p>
         </div>
       </div>
-
-      <!-- ★ 写真③ メニュー2 ★ -->
       <div class="menu-card reveal">
-        <div class="menu-card-image" id="photo-menu2" style="background-image: url(\'images/menu2.jpg\');">
+        <div class="menu-card-image" style="background-image: url('images/menu2.jpg');"></div>
         <div class="menu-card-body">
           <h3>季節のケーキセット</h3>
           <div class="price">¥900</div>
           <p>旬のフルーツを使った手作りケーキとドリンクのセット。</p>
         </div>
       </div>
-
-      <!-- ★ 写真④ メニュー3 ★ -->
       <div class="menu-card reveal">
-        <div class="menu-card-image" id="photo-menu3" style="background-image: url(\'images/menu3.jpg\');">
+        <div class="menu-card-image" style="background-image: url('images/menu3.jpg');"></div>
         <div class="menu-card-body">
           <h3>太宰府抹茶ラテ</h3>
           <div class="price">¥600</div>
@@ -547,12 +487,10 @@ footer .copy {
     <div class="section-label reveal">Gallery</div>
     <div class="section-title reveal">お店の風景</div>
     <div class="gallery-grid">
-
-      <!-- ★ 写真⑤⑥⑦⑧ ギャラリー ★ -->
-      <div class="gallery-item reveal" id="photo-gallery1" style="background-image: url(\'images/gallery1.jpg\');">
-      <div class="gallery-item reveal" id="photo-gallery2" style="background-image: url(\'images/gallery2.jpg\');">
-      <div class="gallery-item reveal" id="photo-gallery3" style="background-image: url(\'images/gallery3.jpg\');">
-      <div class="gallery-item reveal" id="photo-gallery4" style="background-image: url(\'images/gallery4.jpg\');">
+      <div class="gallery-item reveal" style="background-image: url('images/gallery1.jpg');"></div>
+      <div class="gallery-item reveal" style="background-image: url('images/gallery2.jpg');"></div>
+      <div class="gallery-item reveal" style="background-image: url('images/gallery3.jpg');"></div>
+      <div class="gallery-item reveal" style="background-image: url('images/gallery4.jpg');"></div>
     </div>
   </div>
 </section>
@@ -608,13 +546,11 @@ footer .copy {
 </footer>
 
 <script>
-// Navbar
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
